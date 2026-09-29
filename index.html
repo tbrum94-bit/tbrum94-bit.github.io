@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tucker Brumley — Customer Success</title>
+  <meta name="description" content="Customer Success professional turning lagging adoption and at-risk accounts into measurable outcomes — 30% to 90%+ adoption, a retained $42.6M contract, and a $205.95M growth strategy." />
+
+  <style>
+    :root {
+      --accent: #1d4ed8;
+      --accent-ink: #ffffff;
+      --ink: #17181c;
+      --ink-soft: #4a4d57;
+      --ink-faint: #6b6f7a;
+      --line: #e6e7eb;
+      --surface: #ffffff;
+      --surface-2: #f7f8fa;
+      --metric: #0b7a4b;      /* results = green */
+      --maxw: 720px;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink); background: var(--surface);
+      line-height: 1.55; font-size: 17px; -webkit-font-smoothing: antialiased;
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: #fff; padding: 10px 16px; z-index: 100; }
+    .skip:focus { left: 8px; top: 8px; }
+
+    /* Sticky header: always-visible resume + contact */
+    header.bar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar-inner { max-width: var(--maxw); margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .bar-name { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); }
+    .bar-links { display: flex; gap: 8px; align-items: center; }
+    .btn { display: inline-block; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+    .btn:hover { text-decoration: none; border-color: var(--ink-soft); }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+    .btn-primary:hover { background: #1743b5; border-color: #1743b5; }
+
+    /* Above the fold */
+    .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
+    .hero h1 { font-size: clamp(30px, 8vw, 44px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 6px; }
+    .hero .role { font-size: clamp(17px, 4.5vw, 20px); font-weight: 600; color: var(--accent); margin: 0 0 18px; }
+    .hero .positioning { font-size: clamp(18px, 4.6vw, 21px); color: var(--ink-soft); margin: 0 0 26px; max-width: 40ch; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    section { padding: 40px 0; border-bottom: 1px solid var(--line); }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 20px; }
+
+    /* Projects: outcome-first */
+    .project { padding: 22px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 16px; }
+    .project.focal { border-color: #c9d6ff; box-shadow: 0 1px 0 #c9d6ff, 0 0 0 3px #eef2ff; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: #eef2ff; border-radius: 999px; padding: 3px 9px; margin-bottom: 10px; }
+    .project .metric { font-size: clamp(24px, 6.5vw, 30px); font-weight: 800; color: var(--metric); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 4px; }
+    .project h3 { font-size: 16px; margin: 0 0 12px; color: var(--ink-soft); font-weight: 600; }
+    .project dl { margin: 0; }
+    .project dt { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-faint); margin-top: 12px; }
+    .project dt:first-child { margin-top: 0; }
+    .project dd { margin: 2px 0 0; color: var(--ink); }
+
+    .todo { background: #fff7ed; border: 1px dashed #f59e0b; color: #7c2d12; border-radius: 8px; padding: 10px 12px; font-size: 14px; margin: 12px 0 0; }
+
+    /* Capabilities */
+    .cap { padding: 16px 0; border-top: 1px solid var(--line); }
+    .cap:first-of-type { border-top: 0; padding-top: 0; }
+    .cap h3 { margin: 0 0 4px; font-size: 17px; }
+    .cap p { margin: 0; color: var(--ink-soft); }
+
+    /* About */
+    .about p { margin: 0 0 14px; color: var(--ink-soft); }
+    .about .about-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+
+    footer { padding: 40px 0 64px; }
+    footer .contact { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 8px; }
+    footer .muted { color: var(--ink-faint); font-size: 14px; margin-top: 24px; }
+
+    @media (min-width: 640px) {
+      body { font-size: 18px; }
+      .hero { padding: 72px 0 52px; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Sticky header -->
+  <header class="bar">
+    <div class="bar-inner">
+      <span class="bar-name">Tucker Brumley</span>
+      <nav class="bar-links" aria-label="Primary">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="resume.pdf" aria-label="Download resume (PDF)">Resume</a>
+        <a class="btn btn-primary" href="mailto:tuck.brumley@gmail.com">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ABOVE THE FOLD -->
+    <section class="hero" aria-labelledby="hero-name">
+      <div class="wrap">
+        <h1 id="hero-name">Tucker Brumley</h1>
+        <!-- EDIT ME: role label + one-line positioning are the two most personal lines. Tweak to taste. -->
+        <p class="role">Customer Success &amp; Client Experience</p>
+        <p class="positioning">I turn lagging adoption and at-risk accounts into measurable outcomes — and back it with the numbers.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="mailto:tuck.brumley@gmail.com">Email me</a>
+          <a class="btn" href="resume.pdf">Download resume</a>
+          <a class="btn" href="https://www.linkedin.com/in/tucker-brumley/" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK (outcome-first) -->
+    <section aria-labelledby="work-heading">
+      <div class="wrap">
+        <h2 class="eyebrow" id="work-heading">Selected work</h2>
+
+        <!-- FOCAL PROJECT: Peloton -->
+        <article class="project focal">
+          <span class="tag">Focal project</span>
+          <p class="metric">$205.95M projected Year-1 revenue</p>
+          <h3>Peloton &times; Zwift growth strategy &mdash; MBA team of 6, University of Georgia</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>Peloton was bleeding members &mdash; Connected Fitness subscriptions fell 176,000 in a year while the company spent $300M+ on marketing for zero net subscriber growth. A retention and growth crisis.</dd>
+            <dt>What we did</dt>
+            <dd>Built a member-economics model (LTV of $1,975 at 68% margin and 1.5% monthly churn), analyzed the full competitive set, and designed a Zwift partnership-to-acquisition path into the high-value endurance-athlete segment &mdash; projecting $205.95M in Year-1 revenue ($176.4M recurring subscriptions + $29.55M hardware). Every number was our own.</dd>
+            <dt>My role</dt>
+            <dd>[STATE YOUR SPECIFIC CONTRIBUTION &mdash; e.g., "Owned the financial model and member LTV/churn analysis" or "Led the competitor analysis and pricing of the bundled tier." Be specific; this is group work.]</dd>
+          </dl>
+          <p class="todo">⚠ ROLE REQUIRED — replace the "My role" line with your specific contribution, then delete this note. Recruiters discount group work with no clear individual role.</p>
+        </article>
+
+        <!-- Project 2: JPL adoption -->
+        <article class="project">
+          <p class="metric">Adoption: ~30% &rarr; 90%+</p>
+          <h3>Compliance adoption across NASA/JPL's managed Linux estate &mdash; ManTech</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>A lagging compliance program sat near 30% adoption &mdash; well under JPL's 90% threshold &mdash; creating security and audit exposure.</dd>
+            <dt>What I did</dt>
+            <dd>Redesigned the remediation workflows, training sequences, and user-communication cadences behind the rollout, driving adoption past 90% and making my group the first JPL contract team to clear the threshold.</dd>
+          </dl>
+        </article>
+
+        <!-- Project 3: DHA customer success -->
+        <article class="project">
+          <p class="metric">$42.6M account retained &middot; downtime cut ~90%</p>
+          <h3>Healthcare IT customer success &mdash; DoD Defense Health Agency (American Systems)</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>Recurring maintenance windows of 3&ndash;5 hours every week disrupted DoD military-health users and put a long-term contract at risk.</dd>
+            <dt>What I did</dt>
+            <dd>Redesigned the maintenance approach and introduced automation, cutting downtime to ~4 hours per month, then communicated the measurable gains to program leadership to secure continued investment and retain the $42.6M DHA footprint.</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHAT I CAN PROVE (MBA synthesis, evidence-backed) -->
+    <section aria-labelledby="cap-heading">
+      <div class="wrap">
+        <h2 class="eyebrow" id="cap-heading">What I can prove</h2>
+
+        <div class="cap">
+          <h3>Retention &amp; growth strategy</h3>
+          <p>Built the member LTV and churn model behind a $205.95M growth plan for a connected-fitness brand &mdash; not theory, our own projections.</p>
+        </div>
+        <div class="cap">
+          <h3>Customer &amp; stakeholder management</h3>
+          <p>Served as the primary point between end users, program leadership, developers, and vendors through major system go-lives &mdash; keeping everyone aligned through change.</p>
+        </div>
+        <div class="cap">
+          <h3>Adoption &amp; enablement</h3>
+          <p>Turned a lagging program from ~30% to 90%+ adoption by redesigning training and communication &mdash; the human side, not just the tooling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (linked to LinkedIn + resume) -->
+    <section id="about" class="about" aria-labelledby="about-heading">
+      <div class="wrap">
+        <h2 class="eyebrow" id="about-heading">About</h2>
+        <p>I'm an MBA candidate in Strategy &amp; Consulting at the University of Georgia's Terry College of Business (2026), with 8+ years turning complex technical programs into adoption and customer outcomes across NASA/JPL and the DoD Defense Health Agency.</p>
+        <p>My work sits where customer success meets change management: I get users to actually adopt what's delivered, keep stakeholders aligned through disruption, and tie the work to results a leader can measure &mdash; from 90%+ adoption to a retained $42.6M contract. I hold an active TS/SCI clearance.</p>
+        <div class="about-links">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/tucker-brumley/" rel="noopener">Connect on LinkedIn</a>
+          <a class="btn" href="resume.pdf">Download resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <footer aria-labelledby="contact-heading">
+      <div class="wrap">
+        <h2 class="eyebrow" id="contact-heading">Contact</h2>
+        <div class="contact">
+          <a href="mailto:tuck.brumley@gmail.com">tuck.brumley@gmail.com</a>
+          <a href="https://www.linkedin.com/in/tucker-brumley/" rel="noopener">LinkedIn</a>
+          <a href="resume.pdf">Resume (PDF)</a>
+        </div>
+        <p class="muted">Tucker Brumley, MBA &middot; Woodstock, GA</p>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>

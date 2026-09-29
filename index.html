@@ -89,6 +89,16 @@
     .about p { margin: 0 0 14px; color: var(--ink-soft); }
     .about .about-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
 
+    /* Toast feedback for copy-to-clipboard email fallback */
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(16px);
+      background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease; z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .toast { transition: opacity .18s ease; } }
+
     footer { padding: 40px 0 64px; }
     footer .contact { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 8px; }
     footer .muted { color: var(--ink-faint); font-size: 14px; margin-top: 24px; }
@@ -227,5 +237,37 @@
     </footer>
 
   </main>
+
+  <div class="toast" role="status" aria-live="polite" id="toast"></div>
+
+  <script>
+    // mailto works for anyone with a mail client (all phones, configured desktops).
+    // Fallback: if no mail handler is set, the click otherwise "does nothing" — so we
+    // also copy the address to the clipboard and confirm it, guaranteeing the button acts.
+    (function () {
+      var toast = document.getElementById('toast');
+      var timer;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+      }
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var email = link.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(email).then(
+              function () { showToast('Email copied: ' + email); },
+              function () { showToast(email); }
+            );
+          } else {
+            showToast(email);
+          }
+          // mailto navigation still proceeds for those with a mail client.
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
